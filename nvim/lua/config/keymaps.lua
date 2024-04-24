@@ -32,9 +32,22 @@ wk.register({
       k = { ":CucumberJS<CR>", "Cucumber Hello World" },
       r = { ":CucumberRead<CR>", "Cucumber StepDefs" },
     },
+    ts = {
+      name = "Treesitter",
+      i = { ":TSInstallInfo<CR>", "Install Info" },
+      u = { ":TSUpdate<CR>", "Update" },
+      p = { ":TSPlaygroundToggle<CR>", "Playground" },
+      d = { ":TSDiagnostics<CR>", "Diagnostics" },
+      a = { ":TSContext<CR>", "Context" },
+    },
+    g = {
+      name = "GoToDefinition",
+      d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Definition" },
+    },
   },
 })
 
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("i", "<C-j>", "<Plug>(copilot-next)")
 vim.keymap.set("i", "<C-k>", "<Plug>(copilot-prev)")
 vim.keymap.set("i", "<C-l>", "<Plug>(copilot-accept)")

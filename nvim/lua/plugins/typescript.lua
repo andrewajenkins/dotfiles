@@ -102,14 +102,14 @@ return {
       local Config = require("lazyvim.config")
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
-      for name, sign in pairs(Config.icons.dap) do
-        sign = type(sign) == "table" and sign or { sign }
-        vim.fn.sign_define(
-          "Dap" .. name,
-          { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
-        )
-      end
-
+      -- for name, sign in pairs(Config.icons.dap) do
+      --   sign = type(sign) == "table" and sign or { sign }
+      --   vim.fn.sign_define(
+      --     "Dap" .. name,
+      --     { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
+      --   )
+      -- end
+      --
       for _, language in ipairs(js_based_languages) do
         dap.configurations[language] = {
           -- Debug single nodejs files
@@ -213,6 +213,16 @@ return {
           },
         }
       end
+      dap.adapters.nlua = function(callback, _)
+        callback({ type = "server", host = "127.0.0.1", port = 8086 })
+      end
+      dap.configurations["lua"] = {
+        {
+          type = "nlua",
+          request = "attach",
+          name = "Attach to running Neovim instance",
+        },
+      }
     end,
     keys = {
       {
@@ -288,11 +298,6 @@ return {
           })
         end,
       },
-      {
-        "Joakker/lua-json5",
-        build = "./install.sh",
-      },
     },
   },
 }
-

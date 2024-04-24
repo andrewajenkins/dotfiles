@@ -14,3 +14,4 @@ alias gc="gh copilot"
 alias gcs="gh copilot suggest"
 alias gce="gh copilot explain"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export VIMRUNTIME=/usr/local/share/nvim/runtime

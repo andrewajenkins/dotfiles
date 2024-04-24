@@ -24,4 +24,5 @@ return {
   },
   { "nvim-telescope/telescope-project.nvim" },
   { dir = "~/projects/cucumberjs", config = true }, -- { "folke/noice.nvim", enabled = false },
+  { "sheerun/vim-polyglot" },
 }

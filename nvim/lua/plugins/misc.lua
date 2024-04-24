@@ -11,16 +11,6 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   { "github/copilot.vim" },
-  -- { "nvim-neotest/neotest" },
-  -- {
-  --   "ahmedkhalf/project.nvim",
-  --   config = function()
-  --     require("project_nvim").setup({
-  --       patterns = { "package.json", ".git" },
-  --       manual_mode = true,
-  --     })
-  --   end,
-  -- },
   { "nvim-telescope/telescope-project.nvim" },
   { dir = "~/projects/cucumberjs", config = true }, -- { "folke/noice.nvim", enabled = false },
   { "sheerun/vim-polyglot" },

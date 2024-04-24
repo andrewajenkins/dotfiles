@@ -27,6 +27,7 @@ wk.register({
     tj = { "<cmd>Telescope jumplist<cr>", "Jumplist" },
     tb = { "<cmd>Telescope buffers<cr>", "Buffers" },
     tf = { "<cmd>Telescope find_files<cr>", "Find Files" },
+    tn = { "<cmd>Telescope notify<cr>", "Notifications" },
     -- tg = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
     th = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
     tp = { ":lua require'telescope'.extensions.project.project{}<CR>", "Projects" },

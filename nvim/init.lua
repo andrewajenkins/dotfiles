@@ -1,7 +1,5 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
--- vim.fn.setenv("PATH", vim.fn.getenv("PATH") .. ":/Users/ajenkins@4gclinical.com/code/plugins/language-server/")
-print(vim.fn.getenv("PATH"))
 require("lspconfig").cucumber_language_server.setup({
   cmd = {
     "/Users/ajenkins@4gclinical.com/code/plugins/language-server/bin/cucumber-language-server.cjs",

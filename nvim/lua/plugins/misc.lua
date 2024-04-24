@@ -12,16 +12,15 @@ return {
   },
   { "github/copilot.vim" },
   -- { "nvim-neotest/neotest" },
-  {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup({
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      })
-    end,
-  },
+  -- {
+  --   "ahmedkhalf/project.nvim",
+  --   config = function()
+  --     require("project_nvim").setup({
+  --       patterns = { "package.json", ".git" },
+  --       manual_mode = true,
+  --     })
+  --   end,
+  -- },
   { "nvim-telescope/telescope-project.nvim" },
   { dir = "~/projects/cucumberjs", config = true }, -- { "folke/noice.nvim", enabled = false },
 }

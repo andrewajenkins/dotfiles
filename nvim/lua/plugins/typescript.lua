@@ -187,11 +187,31 @@ return {
             },
             console = "integratedTerminal",
             internalConsoleOptions = "openOnSessionStart",
-            cwd = "${workspaceFolder}/e2e_tests",
+            cwd = "${workspaceFolder}",
             env = {
               HEADLESS = "true",
               LOG_LEVEL = "debug",
             },
+          },
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "protractor debug perf",
+            program = "~/.nvm/versions/node/v16.20.2/bin/node",
+            -- runtimeExecutable = "node",
+            runtimeArgs = {
+              "--inspect=127.0.0.1:9220",
+              "--require=ts-node/register",
+              "${workspaceFolder}/e2e_tests/node_modules/protractor/bin/protractor",
+            },
+            args = { "${workspaceFolder}/e2e_tests/conf/protractor.conf.ts" },
+            env = {
+              CLEAN = "true",
+              FEATURES = "p-03-patients-list-report",
+              SUITE = "p",
+            },
+            cwd = "${workspaceFolder}/e2e_tests",
+            console = "integratedTerminal",
           },
           {
             name = "Python: Django",
@@ -295,4 +315,3 @@ return {
     },
   },
 }
-

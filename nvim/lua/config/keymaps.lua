@@ -5,6 +5,20 @@
 vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>Telescope<cr>", { noremap = true, silent = true })
 -- Add a which-key description for <leader>t and set it to nop
 local wk = require("which-key")
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader><leader>",
+  ":lua require('telescope.builtin').find_files({ search_dirs = { '~/.config/nvim', '~/code/prancer/e2e_tests', '~/projects', '~code/prancer/', '~/code/scripts' } })<CR>",
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>tg",
+  ":lua require('telescope.builtin').live_grep({ search_dirs = { '~/.config/nvim', '~/code/prancer/e2e_tests', '~/projects', '~code/prancer/' } })<CR>",
+  { noremap = true, silent = true }
+)
+
 wk.register({
   ["<leader>"] = {
     t = { "<nop>", "Telescope" },
@@ -13,7 +27,7 @@ wk.register({
     tj = { "<cmd>Telescope jumplist<cr>", "Jumplist" },
     tb = { "<cmd>Telescope buffers<cr>", "Buffers" },
     tf = { "<cmd>Telescope find_files<cr>", "Find Files" },
-    tg = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+    -- tg = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
     th = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
     tp = { ":lua require'telescope'.extensions.project.project{}<CR>", "Projects" },
     cs = { "<cmd>copilot#suggest()<cr>", "Copilot Suggest" },

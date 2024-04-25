@@ -112,7 +112,82 @@ return {
       --
       for _, language in ipairs(js_based_languages) do
         dap.configurations[language] = {
-          -- Debug single nodejs files
+          -- Divider for the launch.json derived configs
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "2.8+ Cucumber debug",
+            program = "./node_modules/@cucumber/cucumber/bin/cucumber.js",
+            runtimeArgs = {
+              "--inspect",
+              "-r",
+              "ts-node/register",
+              "-r",
+              "tsconfig-paths/register",
+            },
+            args = {
+              "--require",
+              "step_definitions/**/*.ts",
+              "--require",
+              "pages/**/*.ts",
+              "--require",
+              "utils/**/*.ts",
+              "--require",
+              "conf/**/*.ts",
+              "--tags",
+              "@" .. vim.fn.expand("%:t:r"),
+            },
+            -- console = "integratedTerminal",
+            -- internalConsoleOptions = "openOnSessionStart",
+            cwd = "${workspaceFolder}",
+            env = {
+              -- HEADLESS = "true",
+              LOG_LEVEL = "debug",
+            },
+          },
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Pre-2.8 Protractor debug - INOP",
+            program = "~/.nvm/versions/node/v16.20.2/bin/node",
+            -- runtimeExecutable = "node",
+            runtimeArgs = {
+              "--inspect=127.0.0.1:9220",
+              "--require=ts-node/register",
+              "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            },
+            args = { "${workspaceFolder}/conf/protractor.conf.ts" },
+            env = {
+              CLEAN = "true",
+              FEATURES = vim.fn.expand("%:t:r"),
+              SUITE = vim.api.nvim_call_function("expand", { "%" }):match("suite%-(%w+)"),
+            },
+            cwd = "${workspaceFolder}",
+            console = "integratedTerminal",
+          },
+          {
+            name = "Python: Django",
+            type = "python",
+            request = "launch",
+            program = "${workspaceFolder}/manage.py",
+            args = {
+              "runserver",
+              "--noreload",
+              "--nothreading",
+            },
+            django = true,
+            justMyCode = false,
+            env = {
+              DJANGO_SETTINGS_MODULE = "your_project.settings",
+              PYTHONUNBUFFERED = "1",
+            },
+            console = "integratedTerminal",
+          },
+          {
+            name = "----- ↓ attach configs ↓ -----",
+            type = "",
+            request = "attach",
+          },
           {
             type = "pwa-node",
             request = "launch",
@@ -154,82 +229,6 @@ return {
             protocol = "inspector",
             sourceMaps = true,
             userDataDir = false,
-          },
-          -- Divider for the launch.json derived configs
-          {
-            name = "----- ↓ launch.json configs ↓ -----",
-            type = "",
-            request = "launch",
-          },
-          {
-            type = "pwa-node",
-            request = "launch",
-            name = "Launch PWA Node",
-            program = "./node_modules/@cucumber/cucumber/bin/cucumber.js",
-            runtimeArgs = {
-              "--inspect",
-              "-r",
-              "ts-node/register",
-              "-r",
-              "tsconfig-paths/register",
-            },
-            args = {
-              "--require",
-              "step_definitions/**/*.ts",
-              "--require",
-              "pages/**/*.ts",
-              "--require",
-              "utils/**/*.ts",
-              "--require",
-              "conf/**/*.ts",
-              "--tags",
-              "@" .. vim.fn.expand("%:t:r"),
-            },
-            console = "integratedTerminal",
-            internalConsoleOptions = "openOnSessionStart",
-            cwd = "${workspaceFolder}",
-            env = {
-              HEADLESS = "true",
-              LOG_LEVEL = "debug",
-            },
-          },
-          {
-            type = "pwa-node",
-            request = "launch",
-            name = "protractor debug perf",
-            program = "~/.nvm/versions/node/v16.20.2/bin/node",
-            -- runtimeExecutable = "node",
-            runtimeArgs = {
-              "--inspect=127.0.0.1:9220",
-              "--require=ts-node/register",
-              "${workspaceFolder}/e2e_tests/node_modules/protractor/bin/protractor",
-            },
-            args = { "${workspaceFolder}/e2e_tests/conf/protractor.conf.ts" },
-            env = {
-              CLEAN = "true",
-              FEATURES = "p-03-patients-list-report",
-              SUITE = "p",
-            },
-            cwd = "${workspaceFolder}/e2e_tests",
-            console = "integratedTerminal",
-          },
-          {
-            name = "Python: Django",
-            type = "python",
-            request = "launch",
-            program = "${workspaceFolder}/manage.py",
-            args = {
-              "runserver",
-              "--noreload",
-              "--nothreading",
-            },
-            django = true,
-            justMyCode = false,
-            env = {
-              DJANGO_SETTINGS_MODULE = "your_project.settings",
-              PYTHONUNBUFFERED = "1",
-            },
-            console = "integratedTerminal",
           },
         }
       end

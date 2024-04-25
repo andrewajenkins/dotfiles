@@ -15,4 +15,5 @@ return {
   { dir = "~/projects/cucumberjs", config = true }, -- { "folke/noice.nvim", enabled = false },
   { "sheerun/vim-polyglot" },
   { "sindrets/diffview.nvim" },
+  { "f-person/git-blame.nvim" },
 }
